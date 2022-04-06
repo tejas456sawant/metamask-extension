@@ -1,4 +1,13 @@
-import { isEqual, merge, omit, omitBy, pickBy } from 'lodash';
+import {
+  isEqual,
+  mapValues,
+  merge,
+  omit,
+  omitBy,
+  pickBy,
+  size,
+  sum,
+} from 'lodash';
 import { ObservableStore } from '@metamask/obs-store';
 import { bufferToHex, keccak } from 'ethereumjs-util';
 import { generateUUID } from 'pubnub';
@@ -31,6 +40,7 @@ const exceptionsToFilter = {
  * @typedef {import('../../../shared/constants/metametrics').MetaMetricsPagePayload} MetaMetricsPagePayload
  * @typedef {import('../../../shared/constants/metametrics').MetaMetricsPageOptions} MetaMetricsPageOptions
  * @typedef {import('../../../shared/constants/metametrics').MetaMetricsEventFragment} MetaMetricsEventFragment
+ * @typedef {import('../../../shared/constants/metametrics').MetaMetricsTraits} MetaMetricsTraits
  */
 
 /**
@@ -531,7 +541,17 @@ export default class MetaMetricsController {
     };
   }
 
+  /**
+   * This method generates the MetaMetrics user traits object, omitting any
+   * traits that have not changes since the last invocation of this method.
+   *
+   * @param {object} metamaskState - Full metamask state object.
+   * @returns {MetaMetricsTraits | null} traits that have changed since last update
+   */
   _buildUserTraitsObject(metamaskState) {
+    /**
+     * @type {MetaMetricsTraits}
+     */
     const currentTraits = {
       [TRAITS.LEDGER_CONNECTION_TYPE]: metamaskState.ledgerTransportType,
       [TRAITS.NUMBER_OF_ACCOUNTS]: Object.values(metamaskState.identities)
@@ -540,6 +560,9 @@ export default class MetaMetricsController {
         (rpc) => rpc.chainId,
       ),
       [TRAITS.THREE_BOX_ENABLED]: metamaskState.threeBoxSyncingAllowed,
+      [TRAITS.ADDRESS_BOOK_ENTRIES]: sum(
+        mapValues(metamaskState.addressBook, size),
+      ),
     };
 
     if (!this.previousTraits) {
