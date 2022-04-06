@@ -620,6 +620,10 @@ describe('MetaMetricsController', function () {
         ledgerTransportType: 'web-hid',
         identities: [{}, {}],
         threeBoxSyncingAllowed: false,
+        addressBook: {
+          [MAINNET_CHAIN_ID]: [{ address: '0x' }],
+          [ROPSTEN_CHAIN_ID]: [{ address: '0x' }, { address: '0x0' }],
+        },
       });
 
       assert.deepEqual(traits, {
@@ -627,6 +631,7 @@ describe('MetaMetricsController', function () {
         [TRAITS.LEDGER_CONNECTION_TYPE]: 'web-hid',
         [TRAITS.NUMBER_OF_ACCOUNTS]: 2,
         [TRAITS.NETWORKS_ADDED]: [MAINNET_CHAIN_ID, ROPSTEN_CHAIN_ID],
+        [TRAITS.ADDRESS_BOOK_ENTRIES]: 3,
       });
     });
 
@@ -640,6 +645,10 @@ describe('MetaMetricsController', function () {
         ledgerTransportType: 'web-hid',
         identities: [{}, {}],
         threeBoxSyncingAllowed: false,
+        addressBook: {
+          [MAINNET_CHAIN_ID]: [{ address: '0x' }],
+          [ROPSTEN_CHAIN_ID]: [{ address: '0x' }, { address: '0x0' }],
+        },
       });
 
       const updatedTraits = metaMetricsController._buildUserTraitsObject({
@@ -650,10 +659,15 @@ describe('MetaMetricsController', function () {
         ledgerTransportType: 'web-hid',
         identities: [{}, {}, {}],
         threeBoxSyncingAllowed: false,
+        addressBook: {
+          [MAINNET_CHAIN_ID]: [{ address: '0x' }, { address: '0x1' }],
+          [ROPSTEN_CHAIN_ID]: [{ address: '0x' }, { address: '0x0' }],
+        },
       });
 
       assert.deepEqual(updatedTraits, {
         [TRAITS.NUMBER_OF_ACCOUNTS]: 3,
+        [TRAITS.ADDRESS_BOOK_ENTRIES]: 4,
       });
     });
 
@@ -667,6 +681,10 @@ describe('MetaMetricsController', function () {
         ledgerTransportType: 'web-hid',
         identities: [{}, {}],
         threeBoxSyncingAllowed: false,
+        addressBook: {
+          [MAINNET_CHAIN_ID]: [{ address: '0x' }],
+          [ROPSTEN_CHAIN_ID]: [{ address: '0x' }, { address: '0x0' }],
+        },
       });
 
       const updatedTraits = metaMetricsController._buildUserTraitsObject({
@@ -677,6 +695,10 @@ describe('MetaMetricsController', function () {
         ledgerTransportType: 'web-hid',
         identities: [{}, {}],
         threeBoxSyncingAllowed: false,
+        addressBook: {
+          [MAINNET_CHAIN_ID]: [{ address: '0x' }],
+          [ROPSTEN_CHAIN_ID]: [{ address: '0x' }, { address: '0x0' }],
+        },
       });
 
       assert.equal(updatedTraits, null);
