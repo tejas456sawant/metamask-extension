@@ -156,6 +156,9 @@
 
 /**
  * @typedef {Object} Traits
+ * @property {'address_book_entries'} ADDRESS_BOOK_ENTRIES - When the user
+ *  adds or modifies addresses in address book the address_book_entries trait
+ *  is identified.
  * @property {'ledger_connection_type'} LEDGER_CONNECTION_TYPE - when ledger
  *  live connnection type is changed we identify the ledger_connection_type
  *  trait
@@ -165,9 +168,6 @@
  *  change, we identify the new number_of_accounts trait
  * @property {'three_box_enabled'} THREE_BOX_ENABLED - when 3box feature is
  *  toggled we identify the 3box_enabled trait
- * @property {'address_book_entries'} ADDRESS_BOOK_ENTRIES - When the user
- *  adds or modifies addresses in address book the address_book_entries trait
- *  is identified.
  */
 
 /**
@@ -176,15 +176,17 @@
  */
 
 export const TRAITS = {
+  ADDRESS_BOOK_ENTRIES: 'address_book_entries',
   LEDGER_CONNECTION_TYPE: 'ledger_connection_type',
   THREE_BOX_ENABLED: 'three_box_enabled',
   NUMBER_OF_ACCOUNTS: 'number_of_accounts',
   NETWORKS_ADDED: 'networks_added',
-  ADDRESS_BOOK_ENTRIES: 'address_book_entries',
 };
 
 /**
  * @typedef {Object} MetaMetricsTraits
+ * @property {number} [address_book_entries] - The number of entries in the
+ *  user's address book.
  * @property {'ledgerLive' | 'webhid' | 'u2f'} [ledger_connection_type] - the
  *  type of ledger connection set by user preference.
  * @property {Array<string>} [networks_added] - An array consisting of chainIds
@@ -193,8 +195,6 @@ export const TRAITS = {
  *  of identities(accounts) added to the user's MetaMask.
  * @property {boolean} [three_box_enabled] - does the user have 3box sync
  *  enabled?
- * @property {number} [address_book_entries] - The number of entries in the
- *  user's address book.
  */
 
 // Mixpanel converts the zero address value to a truly anonymous event, which
