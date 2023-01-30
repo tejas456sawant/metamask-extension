@@ -3063,9 +3063,9 @@
     "@metamask/controllers" "^26.0.0"
 
 "@metamask/test-dapp@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@metamask/test-dapp/-/test-dapp-5.0.0.tgz#ecea832b57ff97782bfdd57a4af3408c7c64c02d"
-  integrity sha512-eR9JQ0jPOeP/hdQj9hUkqbvinfjVLYTtdHV+mDCN1tsNxiTdninZbltg9bx6Gqp91v9/9YPhlhXCmMQPq/AMxQ==
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@metamask/test-dapp/-/test-dapp-5.3.0.tgz#cd5975db6ddbda4490fbfae72b44280c976f417c"
+  integrity sha512-lq9w7oZ46+Kzs2dPqOn1MsaRl8sC4rVpkjx4p0OhXT1naE50s25kDQm2zcxoJ2WzBJY0M4GttbkxcaNtQesjKg==
 
 "@metamask/types@^1.1.0":
   version "1.1.0"
